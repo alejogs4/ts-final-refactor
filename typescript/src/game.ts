@@ -21,11 +21,12 @@ export class Game {
             this.rockQuestions.push(this.createRockQuestion(i));
           }
     }
-
+    // TODO: Can be generalized 
     private createRockQuestion(index: number): string {
         return "Rock Question " + index;
     }
 
+    // TODO: this.howManyPlayers can be stored in a variable
     public add(name: string): boolean {
         this.players.push(name);
         this.places[this.howManyPlayers() - 1] = 0;
@@ -43,20 +44,36 @@ export class Game {
     }
 
     public roll(roll: number) {
+        
+        /** TODO:
+         * this.players[this.currentPlayer] can be 
+         * stored in a variable
+         */
         console.log(this.players[this.currentPlayer] + " is the current player");
         console.log("They have rolled a " + roll);
     
         if (this.inPenaltyBox[this.currentPlayer]) {
           if (roll % 2 != 0) {
             this.isGettingOutOfPenaltyBox = true;
-    
-            console.log(this.players[this.currentPlayer] + " is getting out of the penalty box");
-            this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
+
+            console.log(
+              this.players[this.currentPlayer] +
+                " is getting out of the penalty box"
+            );
+            //TODO: += operator could be used
+            this.places[this.currentPlayer] =
+              this.places[this.currentPlayer] + roll;
             if (this.places[this.currentPlayer] > 11) {
-              this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
+              //TODO: -= operator could be used
+              this.places[this.currentPlayer] =
+                this.places[this.currentPlayer] - 12;
             }
-    
-            console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
+
+            console.log(
+              this.players[this.currentPlayer] +
+                "'s new location is " +
+                this.places[this.currentPlayer]
+            );
             console.log("The category is " + this.currentCategory());
             this.askQuestion();
           } else {
@@ -64,9 +81,10 @@ export class Game {
             this.isGettingOutOfPenaltyBox = false;
           }
         } else {
-    
+            // TODO: += operator could be used
           this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
           if (this.places[this.currentPlayer] > 11) {
+              // TODO: -= op could be used
             this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
           }
     
@@ -77,6 +95,10 @@ export class Game {
     }
 
     private askQuestion(): void {
+        /**
+         * this.currentCategory() can be stored in a variable
+         * and this block of conditionals could be a switch
+         */
         if (this.currentCategory() == 'Pop')
             console.log(this.popQuestions.shift());
         if (this.currentCategory() == 'Science')
@@ -88,6 +110,9 @@ export class Game {
     }
 
     private currentCategory(): string {
+        /**
+         * this could be a switch
+         */
         if (this.places[this.currentPlayer] == 0)
             return 'Pop';
         if (this.places[this.currentPlayer] == 4)
