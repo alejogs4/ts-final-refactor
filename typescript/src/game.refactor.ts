@@ -150,7 +150,7 @@ export class Game {
     }
 
     if (this.isGettingOutOfPenaltyBox) {
-      console.log("Answer was correct!!!!");
+      console.log("Answer was correct!!!");
       this.purses[this.currentPlayer] += 1;
       console.log(this.players[this.currentPlayer] + " now has " + this.purses[this.currentPlayer] + " Gold Coins.");
 
